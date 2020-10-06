@@ -57,6 +57,8 @@ def check_win(fraction):
             (gameboard[0][0] == fraction and gameboard[1][1] == fraction and gameboard[2][2] == fraction) or\
             (gameboard[2][0] == fraction and gameboard[1][1] == fraction and gameboard[0][2] == fraction):
         return f'Победили {fraction}'
+    elif (' ' not in gameboard[0]) and (' ' not in gameboard[1]) and (' ' not in gameboard[2]):
+        return 'Ничья!'
     else:
         return ''
 
@@ -66,9 +68,11 @@ print_gameboard()
 while True:
     make_a_move(player_1)
     if len(check_win(player_1)):
+        print()
         print(check_win(player_1))
         break
     make_a_move(player_2)
     if len(check_win(player_2)):
+        print()
         print(check_win(player_2))
         break
