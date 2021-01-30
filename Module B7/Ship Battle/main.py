@@ -314,6 +314,9 @@ class Game:
     def fill_board(self):
         print('Расставляем корабли')
         b = Board()
+        print("-" * 20)
+        print(b)
+        print("-" * 20)
         player = User(b,b)
         board = Board(size=self.size)
         for ship_length in self.ships_length:
@@ -330,7 +333,9 @@ class Game:
                 except ShipCrossOtherError as e:
                     print(e)
                     pass
+            print("-" * 20)
             print(board)
+            print("-" * 20)
         print('Доска успешно заполнена кораблями! Можно начинать!')
         board.game_start()
         return board
