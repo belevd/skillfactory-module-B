@@ -16,13 +16,13 @@ class Converter:
             raise APIException('Невозможно конвертировать в ту же валюту')
 
         try:
-            base_request = CURRENCIES[base]
+            base_request = CURRENCIES[base.lower()]
         except KeyError:
             raise APIException(f'Ошибка! Не удалось получить валюту {base}!'
                                       f' Проверьте правильность написания или еще раз ознакомьтесь'
                                       f' со списком по комманде /values')
         try:
-            quote_request = CURRENCIES[quote]
+            quote_request = CURRENCIES[quote.lower()]
         except KeyError:
             raise APIException(f'Ошибка! Не удалось получить валюту {quote}!'
                                       f' Проверьте правильность написания или еще раз ознакомьтесь'
@@ -37,5 +37,5 @@ class Converter:
         response = requests.get(f"{API}base={base_request}")
         responsedict = json.loads(response.content)
         result = float(responsedict['rates'][quote_request]) * float(amount_request)
-        return [result, base_request, quote_request, amount_request]
+        return [result, base, quote, amount_request]
 
